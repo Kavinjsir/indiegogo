@@ -15,7 +15,7 @@ public class FileLoader {
     BufferedWriter output = new BufferedWriter(new FileWriter(targetFileWriter));
 
     // Create file reader to read data from source csv.
-    File rawData = new File("/Users/jintony/learning/cs622/hw/homework2/sample.csv");
+    File rawData = new File("sample.csv");
     // Create buffer to stream data from source.
     BufferedReader br = new BufferedReader(new FileReader(rawData));
 

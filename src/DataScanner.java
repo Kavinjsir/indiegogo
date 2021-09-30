@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.opencsv.CSVReader;
 
-public class Scanner {
+public class DataScanner {
   private String targetFilePath;
 
   private static int titleIdx = 23;
@@ -37,7 +37,7 @@ public class Scanner {
     String closeDate;
   }
 
-  public Scanner(String path) {
+  public DataScanner(String path) {
     this.targetFilePath = path;
   }
 

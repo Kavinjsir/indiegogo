@@ -20,9 +20,14 @@ public class KeywordSearcher {
   }
 
   public SearchRecord getSearchRecord(String keyword) {
+    // FIXME: is the following code block a good way to
+    // get key/value from a HashMap?
     if (this.searchRecords.containsKey(keyword)) {
       return this.searchRecords.get(keyword);
     } else {
+      // Return a record with 0 frequent.
+      // FIXME: is this a good way to give a result when
+      // key is not in the HashMap?
       return new SearchRecord(0, new Date());
     }
   }
@@ -40,15 +45,20 @@ public class KeywordSearcher {
   }
 
   public String getKeywordFromInput() {
-    Scanner reader = new Scanner(System.in);  // Reading from System.in
+    // Create a scanner to get data from standard input.
+    Scanner reader = new Scanner(System.in);
     System.out.println("Please enter a keyword: ");
+    // Get user input, set it as a string.
     String keyword = reader.next();
+    // Close scanner, avoid unexpected data piping.
     reader.close();
     return keyword;
   }
 
   public void printSearchRecord(String keyword) {
+    // Get keyword search record.
     SearchRecord sr = this.getSearchRecord(keyword);
+    // Task 5: Print the record in the required format.
     System.out.printf("%s, %d times\n", keyword, sr.frequency);
   }
 }

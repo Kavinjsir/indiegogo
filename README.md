@@ -5,6 +5,14 @@
 
 **Sep 29, 2021**
 
+## TODO
+1. Run the app, start loading data from sources and generate output file.
+2. When step 1 completed, print a message include output file path.
+3. Print a message for either search by keyword or check search records.
+   - 1. Search by inputting a keyword
+   - 2. Check keyword search record
+   - "q" for exit
+
 ## Project Structure
 
 This project is initialized through vscode java template.

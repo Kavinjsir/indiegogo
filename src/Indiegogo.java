@@ -2,12 +2,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Indiegogo {
+  // FIXME: Set a global constant for store file paths to load.
   public static List<String> rawDataFilePath = Arrays.asList(
       "Indiegogo.csv",
       "Indiegogo001.csv",
       "Indiegogo002.csv"
     );
 
+  // FIXME: Set a global constant for file paths to output.
   public static String dataTargetPath = "output.csv";
 
   public static void main(String[] args) throws Exception {

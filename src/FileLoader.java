@@ -16,13 +16,13 @@ public class FileLoader {
       File rawData = new File(path);
       // Create buffer to stream data to the file reader.
       BufferedReader br = new BufferedReader(new FileReader(rawData));
-
-      // Data streaming from source to the target.
+      // Convert the data from buffer to string.
       String st;
       while ((st = br.readLine()) != null) {
+        // Data streaming from source to the target.
         writer.write(st+"\n");
       }
-
+      // Ensure file is released when streaming finished.
       br.close();
     } catch (IOException e) {
       e.printStackTrace();
@@ -40,12 +40,12 @@ public class FileLoader {
       File targetFileWriter = new File(this.targetFile);
       // Create buffer to stream data to the file writer.
       BufferedWriter output = new BufferedWriter(new FileWriter(targetFileWriter));
-
       // Loop each data file and merge their content into one file.
       this.rawDataFilePath.forEach(path -> this.loadDataAndWrite(path, output));
-
+      // Close the buffer, release the file.
       output.close();
     } catch (Exception e) {
+      // FIXME: How to handle error properly?
       throw new Error(e.getMessage());
     }
   }

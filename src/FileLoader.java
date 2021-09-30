@@ -4,44 +4,49 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class FileLoader {
-  public static void main(String[] args) throws Exception {
-    // Specify the target file path.
-    String targetFile = "output.csv";
-    // Specify the source file paths to load data.
-    List<String> rawDataFilePath = Arrays.asList("Indiegogo.csv", "Indiegogo001.csv", "Indiegogo002.csv");
+  private List<String> rawDataFilePath;
+  private String targetFile;
 
-    // Create file writer to write data to the target file.
-    File targetFileWriter = new File(targetFile);
-    // Create buffer to stream data to the file writer.
-    BufferedWriter output = new BufferedWriter(new FileWriter(targetFileWriter));
-
-    // Loop each data file and merge their content into one file.
-    rawDataFilePath.forEach(path -> {
+  private void loadDataAndWrite(String path, BufferedWriter writer) {
+    try {
       // Create file reader to read data from source csv.
       File rawData = new File(path);
       // Create buffer to stream data to the file reader.
-      BufferedReader br;
+      BufferedReader br = new BufferedReader(new FileReader(rawData));
 
-      try {
-        // Stream data from source.
-        br = new BufferedReader(new FileReader(rawData));
-
-        // Data streaming from source to the target.
-        String st;
-        while ((st = br.readLine()) != null) {
-          System.out.println(st);
-          output.write(st+"\n");
-        }
-
-        br.close();
-      } catch (IOException e) {
-        e.printStackTrace();
+      // Data streaming from source to the target.
+      String st;
+      while ((st = br.readLine()) != null) {
+        writer.write(st+"\n");
       }
-    });
-    output.close();
+
+      br.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public FileLoader(List<String> rawDataFilePath, String targetFile) {
+    this.rawDataFilePath = rawDataFilePath;
+    this.targetFile = targetFile;
+  }
+
+  public void mergeSourceDataIntoOneFile() {
+    try {
+      // Create file writer to write data to the target file.
+      File targetFileWriter = new File(this.targetFile);
+      // Create buffer to stream data to the file writer.
+      BufferedWriter output = new BufferedWriter(new FileWriter(targetFileWriter));
+
+      // Loop each data file and merge their content into one file.
+      this.rawDataFilePath.forEach(path -> this.loadDataAndWrite(path, output));
+
+      output.close();
+    } catch (Exception e) {
+      throw new Error(e.getMessage());
+    }
   }
 }

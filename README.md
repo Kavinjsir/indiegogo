@@ -9,6 +9,32 @@
 
 This project is initialized through vscode java template.
 
+### CSV Template
+- bullet_point,
+- category,
+- category_url,
+- clickthrough_url,
+- close_date,
+- currency,
+- funds_raised_amount,
+- funds_raised_percent,
+- image_url,
+- is_indemand,
+- is_pre_launch,
+- offered_by,
+- open_date,
+- perk_goal_percentage,
+- perks_claimed,
+- price_offered,
+- price_retail,
+- product_stage,
+- project_id,
+- project_type,
+- source_url,
+- tagline,
+- tags,
+- title
+
 ## Description By Vscode
 
 ### Folder Structure

@@ -46,4 +46,9 @@ public class KeywordSearcher {
     reader.close();
     return keyword;
   }
+
+  public void printSearchRecord(String keyword) {
+    SearchRecord sr = this.getSearchRecord(keyword);
+    System.out.printf("%s, %d times\n", keyword, sr.frequency);
+  }
 }

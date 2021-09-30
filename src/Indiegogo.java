@@ -21,10 +21,8 @@ public class Indiegogo {
     // Get keyword from user input.
     String keyword = searcher.getKeywordFromInput();
 
-    // Get search record by the keyword
-    KeywordSearcher.SearchRecord sr = searcher.getSearchRecord(keyword);
-    // Print the frequency
-    System.out.println(sr.frequency);
+    // Print search record by the keyword
+    searcher.printSearchRecord(keyword);
 
     // Search keyword in the single file
     List<DataScanner.SearchResult> searchResults = dataScanner.findKeyword(keyword);
@@ -32,8 +30,6 @@ public class Indiegogo {
 
     // Update search record
     searcher.updateSearchRecord(keyword);
-    sr = searcher.getSearchRecord(keyword);
-    System.out.println(sr.frequency);
-    System.out.println(sr.lastTimestamp);
+    searcher.printSearchRecord(keyword);
   }
 }

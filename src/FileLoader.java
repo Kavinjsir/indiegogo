@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class FileLoader {
-  private List<String> rawDataFilePath;
-  private String targetFile;
+  private final List<String> rawDataFilePath;
+  private final String targetFile;
 
   private void loadDataAndWrite(String path, BufferedWriter writer) {
     try {

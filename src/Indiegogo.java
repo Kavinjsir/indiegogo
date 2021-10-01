@@ -72,7 +72,7 @@ public class Indiegogo {
         keyword = console.readLine(CLI_PREFIX + " Please input a keyword: ");
         // Search keyword in the single file
         List<DataScanner.SearchResult> searchResults = dataScanner.findKeyword(keyword);
-        searchResults.forEach(result -> dataScanner.printSearchResult(result));
+        searchResults.forEach(dataScanner::printSearchResult);
         // Update search record
         searcher.updateSearchRecord(keyword);
       }

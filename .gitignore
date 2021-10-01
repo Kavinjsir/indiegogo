@@ -1,3 +1,6 @@
 *.csv
 !sample.csv
 bin
+out
+.idea
+homework2.iml

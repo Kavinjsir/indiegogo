@@ -13,6 +13,10 @@ public class DataScanner {
   private static int funds_raised_percent = 7;
   private static int close_date = 4;
 
+  private Boolean isValidCSVLine(String[] csvLine) {
+    return csvLine.length >= 23;
+  }
+
   private Boolean containsKeyword(String[] csvLine, String keyword) {
     Boolean exists = false;
     for(String content: csvLine) {
@@ -58,7 +62,7 @@ public class DataScanner {
       String[] nextLine;
       while( (nextLine = reader.readNext()) != null ) {
         // Check each element for a single csv line for the keyword.
-        if (this.containsKeyword(nextLine, keyword)) {
+        if (this.isValidCSVLine(nextLine) && this.containsKeyword(nextLine, keyword)) {
           // If the csv line contains the keyword, store the required attributes.
           searchResults.add(this.createSearchResult(nextLine));
         }

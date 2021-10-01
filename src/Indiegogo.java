@@ -5,9 +5,12 @@ import java.util.List;
 public class Indiegogo {
   // FIXME: Set a global constant for store file paths to load.
   public static List<String> RAW_DATA_FILE_PATH = Arrays.asList(
-      "Indiegogo.csv",
-      "Indiegogo001.csv",
-      "Indiegogo002.csv"
+      "Indiegogo2016.csv",
+      "Indiegogo2017.csv",
+      "Indiegogo2018.csv",
+      "Indiegogo2019.csv",
+      "Indiegogo2020.csv",
+      "Indiegogo2021.csv"
     );
 
   // FIXME: Set a global constant for file paths to output.

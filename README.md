@@ -39,6 +39,8 @@ The project can be ran through Vscode Java Tester Runtime.
 
 To do that, just click the class file `Indiegogo` in the file explorer, a "run button" should be displayed on the right corner of the window, click that and the program will be launched. A panel should be automatically displayed and you can see the result there.
 
+> In Line 7 of `Indiegogo.class`, a static list of input file paths is specified. To make the program work, either import csv files based on the value in the list or change the code of the value to simplify.
+
 ## TODO
 1. Run the app, start loading data from sources and generate output file.
 2. When step 1 completed, print a message include output file path.

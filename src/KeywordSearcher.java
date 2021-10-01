@@ -1,6 +1,5 @@
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class KeywordSearcher {
   public class SearchRecord {
@@ -44,21 +43,10 @@ public class KeywordSearcher {
     this.searchRecords.put(keyword, sr);
   }
 
-  public String getKeywordFromInput() {
-    // Create a scanner to get data from standard input.
-    Scanner reader = new Scanner(System.in);
-    System.out.println("Please enter a keyword: ");
-    // Get user input, set it as a string.
-    String keyword = reader.next();
-    // Close scanner, avoid unexpected data piping.
-    reader.close();
-    return keyword;
-  }
-
   public void printSearchRecord(String keyword) {
     // Get keyword search record.
     SearchRecord sr = this.getSearchRecord(keyword);
     // Task 5: Print the record in the required format.
-    System.out.printf("%s, %d times\n", keyword, sr.frequency);
+    System.out.printf("[Indiegogo Searcher] [Keyword Record] [%s, %d times]\n",  keyword, sr.frequency);
   }
 }

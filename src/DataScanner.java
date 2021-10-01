@@ -77,7 +77,7 @@ public class DataScanner {
 
   public void printSearchResult(SearchResult result) {
     System.out.printf(
-      "Title: %s, funds_raised_percent: %s, close_date: %s\n",
+      "[Indiegogo Searcher] [Search Result] Title: %s, funds_raised_percent: %s, close_date: %s\n",
       result.title,
       result.fundsRaisedPercent,
       result.closeDate

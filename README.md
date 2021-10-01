@@ -42,9 +42,9 @@ To do that, just click the class file `Indiegogo` in the file explorer, a "run b
 > In Line 7 of `Indiegogo.class`, a static list of input file paths is specified. To make the program work, either import csv files based on the value in the list or change the code of the value to simplify.
 
 ## TODO
-1. Run the app, start loading data from sources and generate output file.
-2. When step 1 completed, print a message include output file path.
-3. Print a message for either search by keyword or check search records.
+- [x] Run the app, start loading data from sources and generate output file.
+- [x] When step 1 completed, print a message include output file path.
+- [x] Print a message for either search by keyword or check search records.
    - 1. Search by inputting a keyword
    - 2. Check keyword search record
    - "q" for exit

@@ -5,20 +5,21 @@ import java.util.List;
 
 import com.opencsv.CSVReader;
 
+// Deprecated as downloading JSON files now
 public class DataScanner {
-  private String targetFilePath;
+  private final String targetFilePath;
 
   // Define constant value to store index of the required attributes in csv.
-  private static int titleIdx = 23;
-  private static int funds_raised_percent = 7;
-  private static int close_date = 4;
+  private final static int titleIdx = 23;
+  private final static int funds_raised_percent = 7;
+  private final static int close_date = 4;
 
   private Boolean isValidCSVLine(String[] csvLine) {
     return csvLine.length >= 23;
   }
 
   private Boolean containsKeyword(String[] csvLine, String keyword) {
-    Boolean exists = false;
+    boolean exists = false;
     for(String content: csvLine) {
       if (content.contains(keyword)) {
         // Once an element contains the keyword, stop the loop, return true instantly.
@@ -30,7 +31,7 @@ public class DataScanner {
   }
 
   private SearchResult createSearchResult(String[] csvLine) {
-    // Manally create the result object.
+    // Manually create the result object.
     // FIXME: Is there a better way to create object?
     // (Since this is more like a JSON object)
     SearchResult result = new SearchResult();
@@ -40,7 +41,7 @@ public class DataScanner {
     return result;
   }
 
-  public class SearchResult {
+  public static class SearchResult {
     String title;
     String fundsRaisedPercent;
     String closeDate;

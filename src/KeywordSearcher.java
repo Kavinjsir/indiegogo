@@ -2,7 +2,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class KeywordSearcher {
-  public class SearchRecord {
+  public static class SearchRecord {
     Integer frequency;
     Date lastTimestamp;
 
@@ -12,7 +12,7 @@ public class KeywordSearcher {
     }
   }
 
-  private HashMap<String, SearchRecord> searchRecords;
+  private final HashMap<String, SearchRecord> searchRecords;
 
   public KeywordSearcher() {
     this.searchRecords = new HashMap<String, SearchRecord>();

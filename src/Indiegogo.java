@@ -4,23 +4,18 @@ import java.util.List;
 
 public class Indiegogo {
   // FIXME: Set a global constant for store file paths to load.
-  public static List<String> RAW_DATA_FILE_PATH = Arrays.asList(
-      "Indiegogo2016.csv",
-      "Indiegogo2017.csv",
-      "Indiegogo2018.csv",
-      "Indiegogo2019.csv",
-      "Indiegogo2020.csv",
-      "Indiegogo2021.csv"
+  public static final List<String> RAW_DATA_FILE_PATH = Arrays.asList(
+      "sample.json"
     );
 
   // FIXME: Set a global constant for file paths to output.
-  public static String DATA_TARGET_PATH = "output.csv";
+  public static final String DATA_TARGET_PATH = "output.json";
 
-  public static String EXIT_SELECTION = "q";
-  public static String SEARCH_SELECTION = "1";
-  public static String RECORD_SELECTION = "2";
+  public static final String EXIT_SELECTION = "q";
+  public static final String SEARCH_SELECTION = "1";
+  public static final String RECORD_SELECTION = "2";
 
-  public static String CLI_PREFIX = "[Indiegogo Searcher]";
+  public static final String CLI_PREFIX = "[Indiegogo Searcher]";
 
   public static void displayMessageWithPrefix(String message) {
     System.out.printf("%s %s\n", CLI_PREFIX, message);
@@ -36,7 +31,7 @@ public class Indiegogo {
   public static void main(String[] args) throws Exception {
     FileLoader fileLoader = new FileLoader(RAW_DATA_FILE_PATH, DATA_TARGET_PATH);
     KeywordSearcher searcher = new KeywordSearcher();
-    DataScanner dataScanner = new DataScanner(DATA_TARGET_PATH);
+    JSONScanner jScaner = new JSONScanner();
 
     // Task 1: Merge source files into one file.
     displayMessageWithPrefix("Loading data...");
@@ -71,8 +66,7 @@ public class Indiegogo {
         // Get keyword from user input.
         keyword = console.readLine(CLI_PREFIX + " Please input a keyword: ");
         // Search keyword in the single file
-        List<DataScanner.SearchResult> searchResults = dataScanner.findKeyword(keyword);
-        searchResults.forEach(dataScanner::printSearchResult);
+        jScaner.searchKeyword(keyword, DATA_TARGET_PATH);
         // Update search record
         searcher.updateSearchRecord(keyword);
       }

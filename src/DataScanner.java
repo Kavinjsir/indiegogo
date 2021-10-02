@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.opencsv.CSVReader;
 
+// Deprecated as downloading JSON files now
 public class DataScanner {
   private final String targetFilePath;
 

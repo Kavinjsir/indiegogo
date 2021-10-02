@@ -1,9 +1,12 @@
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JSONScanner {
   public class DataFields {
@@ -37,6 +40,14 @@ public class JSONScanner {
   }
 
   public void searchKeyword(String keyword, String filePath) {
+    List<DataFields> results = new ArrayList<DataFields>();
+    // Scan through file, find lines containing keyword, fetch required fields.
+    this.searchJSONFile(filePath, keyword, results);
+    // Format Print JSON Array of results
+    System.out.println(new JSONArray(results).toString(2));
+  }
+
+  private void searchJSONFile(String filePath, String keyword, List<DataFields> results) {
     try {
       // Create file reader to read data from source csv.
       File rawData = new File(filePath);
@@ -45,9 +56,10 @@ public class JSONScanner {
       // Convert the data from buffer to string.
       String st;
       while ((st = br.readLine()) != null) {
-        // Data streaming from source to the target.
-        DataFields df = this.fetchDataFromJSON(st);
-        printSearchResult(df);
+        if (st.contains(keyword)) {
+          // Data streaming from source to the target.
+          results.add(this.fetchDataFromJSON(st));
+        }
       }
       // Ensure file is released when streaming finished.
       br.close();
@@ -66,14 +78,5 @@ public class JSONScanner {
     requiredFields.setCloseDate(dataObj.getString("close_date"));
 
     return requiredFields;
-  }
-
-  private void printSearchResult(DataFields data) {
-    System.out.printf(
-      "[Indiegogo Searcher] [Search Result] Title: %s, funds_raised_percent: %s, close_date: %s\n",
-      data.getTitle(),
-      data.getFundsRaisedPercent(),
-      data.getCloseDate()
-    );
   }
 }

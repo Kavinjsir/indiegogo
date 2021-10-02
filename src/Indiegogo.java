@@ -5,7 +5,12 @@ import java.util.List;
 public class Indiegogo {
   // FIXME: Set a global constant for store file paths to load.
   public static final List<String> RAW_DATA_FILE_PATH = Arrays.asList(
-      "sample.json"
+      "Indiegogo_2016.json",
+      "Indiegogo_2017.json",
+      "Indiegogo_2018.json",
+      "Indiegogo_2019.json",
+      "Indiegogo_2020.json",
+      "Indiegogo_2021.json"
     );
 
   // FIXME: Set a global constant for file paths to output.

@@ -42,7 +42,7 @@ public class JSONScanner {
       // Create file reader to read data from source csv.
       File rawData = new File(filePath);
       // Create buffer to stream data to the file reader.
-      BufferedReader br = new BufferedReader(new FileReader(rawData));
+      BufferedReader br = new BufferedReader(new FileReader(rawData), 1024 * 8192);
       // Convert the data from buffer to string.
       String st;
       // Scan through file, find lines containing keyword, fetch required fields.

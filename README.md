@@ -26,9 +26,10 @@ For our case, we don't need to create a new one. Just go to the menu bar of vsco
 Once clicked, the Vscode Java pack will automatically recognize the project and switch the env for you.
 
 #### Add additional jar
-This project requires two external jar packeges:
+This project requires three external jar packeges:
 1. commons-lang3-3.1.jar
 2. opencsv-5.5.2.jar
+3. json-20210307.jar
 
 They are specified in `.vscode/settings.json`.
 

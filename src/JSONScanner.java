@@ -5,6 +5,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JSONScanner {
   public class DataFields {
@@ -38,6 +42,7 @@ public class JSONScanner {
   }
 
   public void searchKeyword(String keyword, String filePath) {
+    List<String> searchResult = new ArrayList<String>();
     try {
       // Create file reader to read data from source csv.
       File rawData = new File(filePath);
@@ -46,21 +51,38 @@ public class JSONScanner {
       // Convert the data from buffer to string.
       String st;
       // Scan through file, find lines containing keyword, fetch required fields.
+      Instant startV = Instant.now();
       while ((st = br.readLine()) != null) {
         if (st.contains(keyword)) {
+          searchResult.add(st);
+
+        }
+      }
+      Instant stopV = Instant.now();
+      System.out.println("--Brute force--->" + Duration.between(startV, stopV).getNano());
+      // Ensure file is released when streaming finished.
+      br.close();
+
+
+      // Display number of search results
+      System.out.println("--Brute force--->" + searchResult.size() + " records");
+      // Format print search result
+      // this.displayResultInDetail(searchResult);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void displayResultInDetail(List<String> searchResult) {
+      searchResult.forEach((String res) -> {
           // Data streaming from source to the target.
-          DataFields dataFromFetch = this.fetchDataFromJSON(st);
+          DataFields dataFromFetch = this.fetchDataFromJSON(res);
           if (dataFromFetch != null) {
             // Format Print JSON Array of results
             System.out.println(new JSONObject(dataFromFetch).toString(2));
           }
-        }
-      }
-      // Ensure file is released when streaming finished.
-      br.close();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+      });
   }
 
   private DataFields fetchDataFromJSON(String jsonStr) {

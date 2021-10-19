@@ -7,3 +7,4 @@ homework2.iml
 !sample.json
 bk
 .DS_Store
+lucene_index/*

@@ -7,9 +7,9 @@
       "lib/**/*.jar",
       "/Users/jintony/Downloads/opencsv-5.5.2.jar",
       "/Users/jintony/Downloads/commons-lang3-3.1.jar",
-      "/Users/jintony/Downloads/json-20210307.jar"
+      "/Users/jintony/Downloads/json-20210307.jar",
+      "/Users/jintony/Downloads/lucene-8.10.0/core/lucene-core-8.10.0.jar",
+      "/Users/jintony/Downloads/lucene-8.10.0/queryparser/lucene-queryparser-8.10.0.jar"
     ]
 }
-
-
 

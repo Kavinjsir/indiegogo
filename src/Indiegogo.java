@@ -1,20 +1,9 @@
 import java.io.Console;
-import java.util.Arrays;
-import java.util.List;
 
 public class Indiegogo {
-  // FIXME: Set a global constant for store file paths to load.
-  public static final List<String> RAW_DATA_FILE_PATH = Arrays.asList(
-      "Indiegogo_2016.json",
-      "Indiegogo_2017.json",
-      "Indiegogo_2018.json",
-      "Indiegogo_2019.json",
-      "Indiegogo_2020.json",
-      "Indiegogo_2021.json"
-    );
+  public static final String DATA_TARGET_PATH = "indiegogo.json";
 
-  // FIXME: Set a global constant for file paths to output.
-  public static final String DATA_TARGET_PATH = "output.json";
+  public static final String LUCENE_INDEX_PATH = "lucene_index";
 
   public static final String EXIT_SELECTION = "q";
   public static final String SEARCH_SELECTION = "1";
@@ -34,14 +23,17 @@ public class Indiegogo {
   }
 
   public static void main(String[] args) throws Exception {
-    FileLoader fileLoader = new FileLoader(RAW_DATA_FILE_PATH, DATA_TARGET_PATH);
     KeywordSearcher searcher = new KeywordSearcher();
     JSONScanner jScaner = new JSONScanner();
+    LuceneSearcher luceneSearcher = new LuceneSearcher(LUCENE_INDEX_PATH);
+    luceneSearcher.initIndex(DATA_TARGET_PATH);
 
-    // Task 1: Merge source files into one file.
+    // HW2 Task 1: Merge source files into one file.
+    /*
     displayMessageWithPrefix("Loading data...");
     fileLoader.mergeSourceDataIntoOneFile();
     displayMessageWithPrefix("Data loaded!");
+    */
 
     // Create a scanner to get data from standard input.
     Console console = System.console();
@@ -70,8 +62,12 @@ public class Indiegogo {
       if (selection.equals(SEARCH_SELECTION)) {
         // Get keyword from user input.
         keyword = console.readLine(CLI_PREFIX + " Please input a keyword: ");
-        // Search keyword in the single file
+        // Search keyword through "Brute Force":
         jScaner.searchKeyword(keyword, DATA_TARGET_PATH);
+
+        // Search keyword through "Lucene":
+        luceneSearcher.search(keyword, LUCENE_INDEX_PATH);
+
         // Update search record
         searcher.updateSearchRecord(keyword);
       }

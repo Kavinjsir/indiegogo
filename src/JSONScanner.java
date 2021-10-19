@@ -99,4 +99,15 @@ public class JSONScanner {
       return null;
     }
   }
+
+  public String getTitle(String jsonStr) {
+    try {
+      JSONObject dataObj = new JSONObject(jsonStr).getJSONObject("data");
+      return dataObj.getString("title");
+    } catch (JSONException e) {
+      // FIXME: Avoid printing too much parsing error stacks.
+      // e.printStackTrace();
+      return "";
+    }
+  }
 }

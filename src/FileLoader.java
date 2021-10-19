@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+// The file loader to merge multiple files into one.
+// For HW2, unused in HW3
 public class FileLoader {
   private final List<String> rawDataFilePath;
   private final String targetFile;

@@ -24,7 +24,9 @@ public class Indiegogo {
 
   public static void main(String[] args) throws Exception {
     KeywordSearcher searcher = new KeywordSearcher();
+
     JSONScanner jScaner = new JSONScanner();
+
     LuceneSearcher luceneSearcher = new LuceneSearcher(LUCENE_INDEX_PATH);
     luceneSearcher.initIndex(DATA_TARGET_PATH);
 
@@ -67,6 +69,8 @@ public class Indiegogo {
 
         // Search keyword through "Lucene":
         luceneSearcher.search(keyword, LUCENE_INDEX_PATH);
+
+        // Search keyword through compression file:
 
         // Update search record
         searcher.updateSearchRecord(keyword);

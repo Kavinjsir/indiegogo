@@ -12,7 +12,7 @@ import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
+// import org.apache.lucene.search.TopDocs;
 
 import java.io.*;
 import java.nio.file.Paths;

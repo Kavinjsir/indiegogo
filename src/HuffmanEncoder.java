@@ -1,3 +1,4 @@
+/*
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -179,16 +180,18 @@ public class HuffmanEncoder {
     // printDecodedString(sb);
   }
 
-  public void loadFileContents(String filePath) throws IOException {
+  // Read file and count character
+  public void loadFileContents(String sourceFile) throws IOException {
     FileReader  fr = null;
     try{
-       fr = new FileReader(filePath);
+       fr = new FileReader(sourceFile);
         BufferedReader br = new BufferedReader(fr, 1024 * 8192);
         String text;
         while((text = br.readLine()) != null) {
           // Base case: empty string
           if (text == null || text.length() == 0) { continue; }
 
+          // Count Character
           countCharacterFrequency(text);
         }
         
@@ -268,3 +271,5 @@ public class HuffmanEncoder {
 
   }
 }
+
+*/

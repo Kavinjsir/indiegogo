@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
@@ -125,29 +127,32 @@ public class HuffmanCompresser {
   }
 
    // Traverse the Huffman Tree and decode the encoded string
-   public int decode(Node currentRoot, int index, StringBuilder sb) {
+   public int decode(Node currentRoot, int index, StringBuilder sb, StringBuilder decodedChs) {
     if (currentRoot == null) { return index; }
 
     if (isLeaf(currentRoot)) {
-      System.out.print(currentRoot.ch);
+      decodedChs.append(currentRoot.ch);
+      // System.out.print(currentRoot.ch);
       return index;
     }
 
     index++;
 
     currentRoot = (sb.charAt(index) == '0') ? currentRoot.left : currentRoot.right;
-    index = decode(currentRoot, index, sb);
+    index = decode(currentRoot, index, sb, decodedChs);
     return index;
   }
 
-  public void printDecodedString(StringBuilder sb, Node node) {
+  public String printDecodedString(StringBuilder sb, Node node) {
 
-    System.out.print("The decoded string is: ");
+    // System.out.print("The decoded string is: ");
+    StringBuilder decodedChs = new StringBuilder();
 
     if (isLeaf(node)) {
       Integer freq = node.freq;
       while (freq-- > 0) {
-        System.out.print(node.ch);
+        // System.out.print(node.ch);
+        decodedChs.append(node.ch);
       }
     }
     else {
@@ -155,13 +160,18 @@ public class HuffmanCompresser {
       // decode the encoded string
       int index = -1;
       while (index < sb.length() - 1) {
-        index = decode(node, index, sb);
+        index = decode(node, index, sb, decodedChs);
       }
     }
+
+    // convert in string
+    return decodedChs.toString();
   }
 
-  public void searchEncodedFile(String encodedkeywords, String filePath, Node root) {
+  public List<String> searchEncodedFile(String encodedkeywords, String filePath, Node root) {
     FileReader fr = null;
+    List<String> results = new ArrayList<String>();
+
     try {
       fr = new FileReader(filePath);
       BufferedReader br = new BufferedReader(fr, 1024 * 8192);
@@ -169,8 +179,7 @@ public class HuffmanCompresser {
       while ( (text = br.readLine()) != null ) {
         if (text == null || text.length() == 0) { continue; }
         if (text.contains(encodedkeywords)) {
-          printDecodedString(new StringBuilder(text), root);
-          System.out.println();
+          results.add(printDecodedString(new StringBuilder(text), root));
         }
       }
       br.close();
@@ -179,6 +188,8 @@ public class HuffmanCompresser {
       System.out.println("[Count characters] Failed to read/write file: " + e);
       e.printStackTrace();
     }
+
+    return results;
   }
 
   public static void main(String[] args) throws Exception {
@@ -194,10 +205,13 @@ public class HuffmanCompresser {
 
     String keyword = "wellness";
     String codes = hfc.encodeTextLine(keyword, huffmanEncodingTable).toString();
-    hfc.searchEncodedFile(codes, encode, root);
+    List<String> results = hfc.searchEncodedFile(codes, encode, root);
+    results.forEach(str -> System.out.println(str));
+    results = null;
 
     keyword = "Boston";
     codes = hfc.encodeTextLine(keyword, huffmanEncodingTable).toString();
-    hfc.searchEncodedFile(codes, encode, root);
+    results = hfc.searchEncodedFile(codes, encode, root);
+    results.forEach(str -> System.out.println(str));
   }
 }
